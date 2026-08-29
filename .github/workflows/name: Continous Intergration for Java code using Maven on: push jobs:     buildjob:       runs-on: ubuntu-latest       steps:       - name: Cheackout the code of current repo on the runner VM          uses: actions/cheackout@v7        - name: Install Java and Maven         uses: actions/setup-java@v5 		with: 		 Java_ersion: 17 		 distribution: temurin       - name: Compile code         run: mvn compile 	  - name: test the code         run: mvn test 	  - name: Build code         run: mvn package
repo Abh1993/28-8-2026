@@ -1,0 +1,20 @@
+name: Continous Intergration for Java code using Maven
+on: push
+jobs:
+    buildjob:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Cheackout the code of current repo on the runner VM 
+        uses: actions/cheackout@v7 
+      - name: Install Java and Maven
+        uses: actions/setup-java@v5
+		with:
+		 Java_ersion: 17
+		 distribution: temurin
+      - name: Compile code
+        run: mvn compile
+	  - name: test the code
+        run: mvn test
+	  - name: Build code
+        run: mvn package
+		
